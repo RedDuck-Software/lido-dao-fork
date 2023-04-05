@@ -40,8 +40,8 @@ const getNetConfig = (networkName, ethAccountName) => {
   const localhost = {
     ...base,
     url: 'http://localhost:8545',
-    chainId: 31337,
-    gas: 8000000 // the same as in Görli
+    chainId: 5
+    // gas: 8000000000 // the same as in Görli
   }
   const byNetName = {
     localhost,
@@ -49,7 +49,7 @@ const getNetConfig = (networkName, ethAccountName) => {
     local: {
       ...base,
       accounts: {
-        mnemonic: 'explain tackle mirror kit van hammer degree position ginger unfair soup bonus'
+        mnemonic: 'decade frequent law festival pitch shoulder soda palace release person marble addict'
       },
       url: 'http://localhost:8545',
       chainId: 1337
@@ -81,6 +81,18 @@ const getNetConfig = (networkName, ethAccountName) => {
       ...base,
       url: 'https://goerli.infura.io/v3/' + accounts.infura.projectId,
       chainId: 5,
+      timeout: 60000 * 10
+    },
+    sepolia: {
+      ...base,
+      url: 'https://sepolia.infura.io/v3/' + accounts.infura.projectId,
+      chainId: 11155111,
+      timeout: 60000 * 10
+    },
+    pulsechain: {
+      ...base,
+      url: 'https://rpc.v3.testnet.pulsechain.com',
+      chainId: 942,
       timeout: 60000 * 10
     },
     'mainnet-test': {
@@ -166,20 +178,19 @@ module.exports = {
     }
   },
   gasReporter: {
-    enabled: !!process.env.REPORT_GAS,
-    currency: 'USD'
+    enabled: true
   },
   etherscan: accounts.etherscan,
   aragon: {
-    ipfsApi: process.env.IPFS_API_URL || 'https://ipfs.infura.io:5001/api/v0',
-    ipfsGateway: process.env.IPFS_GATEWAY_URL || 'https://ipfs.io/'
+    ipfsApi: process.env.IPFS_API_URL || 'http://127.0.0.1:5001/api/v0',
+    ipfsGateway: process.env.IPFS_GATEWAY_URL || 'http://127.0.0.1:8080'
   },
   ipfs: {
-    url: process.env.IPFS_API_URL || 'https://ipfs.infura.io:5001/api/v0',
-    gateway: process.env.IPFS_GATEWAY_URL || 'https://ipfs.io/',
+    url: 'http://127.0.0.1:5001/api/v0',
+    gateway: process.env.IPFS_GATEWAY_URL || 'http://127.0.0.1:8080',
     pinata: {
-      key: 'YOUR_PINATA_API_KEY',
-      secret: 'YOUR_PINATA_API_SECRET_KEY'
+      key: '2NGyTyKvI09iumogfsWDGNUPRVi',
+      secret: '54e3483fa43f3614dc77af9d4a6cc192'
     }
   }
 }

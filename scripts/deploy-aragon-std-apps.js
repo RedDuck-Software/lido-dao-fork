@@ -58,7 +58,7 @@ async function deployAragonStdApps({
 
   logHeader(`Checking out aragon-apps repo...`)
   const appsRepoPath = './aragon-apps'
-  await gitCloneRepo(appsRepoPath, aragonAppsRepo, aragonAppsRepoRef)
+  // await gitCloneRepo(appsRepoPath, aragonAppsRepo, aragonAppsRepoRef)
 
   // prevent Hardhat from passing the config to subprocesses
   const env = filterObject(process.env, (key) => key.substr(0, 8) !== 'HARDHAT_')
@@ -77,7 +77,7 @@ async function deployAragonStdApps({
 async function publishApp(appName, appsRepoPath, hardhatConfig, env, netName, releaseType, netState) {
   logHeader(`Publishing new ${releaseType} release of app '${appName}'`)
 
-  let result = {}
+  const result = {}
   const appRootPath = path.resolve(appsRepoPath, 'apps', appName)
   const appFullName = await readAppName(appRootPath, netName)
   const appId = namehash(appFullName)
@@ -126,22 +126,23 @@ async function publishApp(appName, appsRepoPath, hardhatConfig, env, netName, re
 
   // if (hasFrontend) {
   //   const distPath = path.join(appRootPath, 'dist')
-
+  //
   //   // Upload release directory to IPFS
   //   log('Uploading release assets to IPFS...')
-
+  //
   //   const contentHash = await uploadDirToIpfs({
   //     dirPath: distPath,
   //     apiUrl: netState.ipfsAPI
   //   })
   //   log(`Release assets uploaded to IPFS: ${yl(contentHash)}`)
-
+  //
   //   result.ipfsCid = contentHash
   //   result.contentURI = toContentUri('ipfs', contentHash)
   // }
 
-  await execLive('hardhat', {
+  await execLive('npx', {
     args: [
+      'hardhat',
       'publish',
       'major',
       '--config',

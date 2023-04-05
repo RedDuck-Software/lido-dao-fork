@@ -21,9 +21,9 @@ function execLive(cmd, { args, cwd, env }) {
     const argsDesc = args.length ? ' ' + args.map((a) => (a === '' ? "''" : a)).join(' ') : ''
     log(`+ cd ${cwd || process.cwd()} && ${cmd}${argsDesc}`)
     const proc = childProcess.spawn(cmd, args, { cwd, env, stdio: 'inherit' })
-    proc.on('exit', (code) => {
+    proc.on('exit', (code, signal) => {
       if (code !== 0) {
-        reject(new Error(`exited with code ${code}`))
+        reject(new Error(`exited with code ${code}. Signal: ${signal}`))
       } else {
         resolve()
       }

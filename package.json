@@ -1,5 +1,5 @@
 {
-  "name": "@lido/dao",
+  "name": "@lido/dao1",
   "version": "0.0.1",
   "private": true,
   "workspaces": [
@@ -50,6 +50,12 @@
     "deploy:local:apps": "NETWORK_NAME=local NETWORK_STATE_FILE=deployed-local.json IPFS_API_URL=http://127.0.0.1:5001/api/v0 IPFS_GATEWAY_URL=http://127.0.0.1:8080o hardhat run --no-compile ./scripts/deploy-lido-apps.js",
     "deploy:local:perm": "NETWORK_NAME=local NETWORK_STATE_FILE=deployed-local.json hardhat run --no-compile ./scripts/deploy-repo-permissions.js",
     "deploy:local:dao": "NETWORK_NAME=local NETWORK_STATE_FILE=deployed-local.json hardhat run --no-compile ./scripts/deploy-lido-dao.js",
+    "deploy:pulsechain:aragon-env": "NETWORK_NAME=pulsechain NETWORK_STATE_FILE=deployed-pulsechain.json hardhat run --no-compile ./scripts/deploy-aragon-env.js",
+    "deploy:pulsechain:aragon-std-apps": "NETWORK_NAME=pulsechain NETWORK_STATE_FILE=deployed-pulsechain.json IPFS_API_URL=http://127.0.0.1:5001/api/v0 IPFS_GATEWAY_URL=http://127.0.0.1:8080 RELEASE_TYPE=major hardhat run --no-compile ./scripts/deploy-aragon-std-apps.js --config ./hardhat.config.aragon-apps.js",
+    "deploy:pulsechain:apm-and-template": "NETWORK_NAME=pulsechain NETWORK_STATE_FILE=deployed-pulsechain.json hardhat run --no-compile  ./scripts/deploy-lido-apm-and-template.js",
+    "deploy:pulsechain:apps": "NETWORK_NAME=pulsechain NETWORK_STATE_FILE=deployed-pulsechain.json IPFS_API_URL=http://127.0.0.1:5001/api/v0 IPFS_GATEWAY_URL=http://127.0.0.1:8080 hardhat run --no-compile ./scripts/deploy-lido-apps.js",
+    "deploy:pulsechain:perm": "NETWORK_NAME=pulsechain NETWORK_STATE_FILE=deployed-pulsechain.json hardhat run --no-compile ./scripts/deploy-repo-permissions.js",
+    "deploy:pulsechain:dao": "NETWORK_NAME=pulsechain NETWORK_STATE_FILE=deployed-pulsechain.json hardhat run --no-compile ./scripts/deploy-lido-dao.js",
     "deploy:wsteth": "hardhat run --no-compile ./scripts/deploy-wsteth.js",
     "apps:lido": "yarn --cwd ./apps/lido/app/ cli",
     "apps:oracle": "yarn --cwd ./apps/lidooracle/app/ cli",
@@ -114,6 +120,7 @@
     "winston": "^3.3.3"
   },
   "dependencies": {
+    "@aragon/apps-agent": "^2.1.0",
     "@aragon/hardhat-aragon": "^1.0.0",
     "@aragon/os": "^4.4.0",
     "@openzeppelin/contracts": "3.4.0",

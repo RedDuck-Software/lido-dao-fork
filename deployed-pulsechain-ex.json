@@ -1,0 +1,53 @@
+{
+  "networkId": 942,
+  "ipfsAPI": "https://ipfs.infura.io:5001/api/v0",
+  "multisigAddress": "0x6425D8B36BadB932D34102Cb8284747388A05E06",
+  "lidoApmEnsName": "lidopm.eth",
+  "lidoApmEnsRegDurationSec": 94608000,
+  "daoAragonId": "lido-dao",
+  "daoInitialSettings": {
+    "voting": {
+      "minSupportRequired": "500000000000000000",
+      "minAcceptanceQuorum": "50000000000000000",
+      "voteDuration": 14400
+    },
+    "beaconSpec": {
+      "depositContractAddress": "0x514e626Bc3F5B3DEdAe2d9956062E8C06fEaDca5",
+      "epochsPerFrame": 225,
+      "slotsPerEpoch": 32,
+      "secondsPerSlot": 12,
+      "genesisTime": 1639659600
+    },
+    "fee": {
+      "totalPercent": 15,
+      "treasuryPercent": 0,
+      "insurancePercent": 25,
+      "nodeOperatorsPercent": 75
+    },
+    "token": {
+      "name": "Staked tPLS",
+      "symbol": "stPLS"
+    }
+  },
+  "vestingParams": {
+    "unvestedTokensAmount": "230000000000000000000000",
+    "holders": {
+      "0x815EA0966856A40E5ba3ada7a2B56374eC5f0680": "530000000000000000000000",
+      "0x58Fc94e6015f83eddCFCCDB884d5f5d87F482E61": "15000000000000000000000",
+      "0x40bBc1EC89159Bead3eFbF8fdf5956c649a0fF30": "15000000000000000000000",
+      "0xa965387b1dA9e9CE05ec22e0BF89ff55cA5DF0cb": "15000000000000000000000",
+      "0xE7fCF170f7816f803269Bafd6eA36e9a5A4Dbf16": "15000000000000000000000",
+      "0x0b67d4f49243dD850ec0F9A055A94aE644bfBc9e": "15000000000000000000000",
+      "0x8DD73C4f5AA85f42dF6805434D94586EFa7A752e": "15000000000000000000000"
+    },
+    "start": 1639659600,
+    "cliff": 1639660100,
+    "end": 1639660100,
+    "revokable": false
+  },
+  "selfOwnedStETHBurnerParams": {
+    "totalCoverSharesBurnt": "0",
+    "totalNonCoverSharesBurnt": "0",
+    "maxBurnAmountPerRunBasisPoints": "4"
+  }
+}

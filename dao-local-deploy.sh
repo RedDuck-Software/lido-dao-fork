@@ -3,8 +3,9 @@ set -e +u
 set -o pipefail
 
 # first local account by default
-DEPLOYER=${DEPLOYER:=0xb4124cEB3451635DAcedd11767f004d8a28c6eE7}
-NETWORK=${NETWORK:=local}
+DEPLOYER=${DEPLOYER:=0x6425D8B36BadB932D34102Cb8284747388A05E06}
+NETWORK=${NETWORK:=pulsechain}
+export NETWORK_NAME=$NETWORK
 
 VOTE_ID=0
 
@@ -27,8 +28,8 @@ function pause() {
 docker-compose down -v
 docker-compose up --build -d
 
-rm -f deployed-$NETWORK.json
-cp deployed-local-defaults.json deployed-$NETWORK.json
+#rm -f deployed-$NETWORK.json
+#cp deployed-local-defaults.json deployed-$NETWORK.json
 
 yarn install --immutable
 yarn compile
@@ -105,7 +106,7 @@ VOTE_ID=$VOTE_ID yarn hardhat --network $NETWORK run ./scripts/multisig/vote-and
 msg "Vote $VOTE_ID executed"
 VOTE_ID=$((VOTE_ID+1))
 
-# Execution Layer Rewards: deploy 
+# Execution Layer Rewards: deploy
 yarn hardhat --network $NETWORK run ./scripts/multisig/26-deploy-execution-layer-rewards-vault.js
 yarn hardhat --network $NETWORK tx --from $DEPLOYER --file tx-26-deploy-execution-layer-rewards-vault.json
 pause "!!! Now set the executionLayerRewardsVaultDeployTx hash value in deployed-$NETWORK.json"
