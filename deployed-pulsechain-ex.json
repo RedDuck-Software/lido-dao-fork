@@ -1,6 +1,6 @@
 {
   "networkId": 942,
-  "ipfsAPI": "https://ipfs.infura.io:5001/api/v0",
+  "ipfsAPI": "http://127.0.0.1:5001/api/v0",
   "multisigAddress": "0x6425D8B36BadB932D34102Cb8284747388A05E06",
   "lidoApmEnsName": "lidopm.eth",
   "lidoApmEnsRegDurationSec": 94608000,
@@ -12,7 +12,7 @@
       "voteDuration": 14400
     },
     "beaconSpec": {
-      "depositContractAddress": "0x514e626Bc3F5B3DEdAe2d9956062E8C06fEaDca5",
+      "depositContractAddress": "",
       "epochsPerFrame": 225,
       "slotsPerEpoch": 32,
       "secondsPerSlot": 12,
@@ -32,7 +32,8 @@
   "vestingParams": {
     "unvestedTokensAmount": "230000000000000000000000",
     "holders": {
-      "0x815EA0966856A40E5ba3ada7a2B56374eC5f0680": "530000000000000000000000",
+      "0x6425D8B36BadB932D34102Cb8284747388A05E06": "530000000000000000000000",
+      "0x815EA0966856A40E5ba3ada7a2B56374eC5f0680": "15000000000000000000000",
       "0x58Fc94e6015f83eddCFCCDB884d5f5d87F482E61": "15000000000000000000000",
       "0x40bBc1EC89159Bead3eFbF8fdf5956c649a0fF30": "15000000000000000000000",
       "0xa965387b1dA9e9CE05ec22e0BF89ff55cA5DF0cb": "15000000000000000000000",

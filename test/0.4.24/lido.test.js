@@ -430,8 +430,8 @@ contract('Lido', ([appManager, voting, user1, user2, user3, nobody, depositor]) 
     assertBn(await app.balanceOf(user2), tokens(2))
     assertBn(await app.totalSupply(), tokens(3))
 
-    // +30 ETH
-    await web3.eth.sendTransaction({ to: app.address, from: user3, value: ETH(30) })
+    // +31999997 ETH
+    await web3.eth.sendTransaction({ to: app.address, from: user3, value: ETH(31999997) })
     // can not deposit with unset withdrawalCredentials
     await assertRevert(app.methods['depositBufferedEther()']({ from: depositor }), 'EMPTY_WITHDRAWAL_CREDENTIALS')
 

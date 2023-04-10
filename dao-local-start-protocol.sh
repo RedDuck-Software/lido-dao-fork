@@ -3,9 +3,9 @@ set -e +u
 set -o pipefail
 
 # first local account by default
-DEPLOYER=${DEPLOYER:=0xb4124cEB3451635DAcedd11767f004d8a28c6eE7}
+DEPLOYER=${DEPLOYER:=0x372aB0250102C7626c5E91E57FCB75Ea74B40848}
 # NETWORK=kintsugi
-NETWORK=${NETWORK:=local}
+NETWORK=${NETWORK:=pulsechain}
 
 
 function msg() {

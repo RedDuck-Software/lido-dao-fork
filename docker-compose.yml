@@ -8,7 +8,7 @@ services:
       - 8545:8545
       - 8546:8546
     environment:
-      - NETWORK_ID=1337
+      - NETWORK_ID=942
 
   ipfs:
     image: ipfs/go-ipfs:latest
@@ -25,8 +25,8 @@ services:
         - ARAGON_IPFS_GATEWAY=http://localhost:8080/ipfs
         - ARAGON_DEFAULT_ETH_NODE=ws://localhost:8546
         - ARAGON_APP_LOCATOR=ipfs
-        - ARAGON_ETH_NETWORK_TYPE=local
-        - ARAGON_ENS_REGISTRY_ADDRESS=0x5f6f7e8cc7346a11ca2def8f827b7a0b612c56a1
+        - ARAGON_ETH_NETWORK_TYPE=pulsechain
+        - ARAGON_ENS_REGISTRY_ADDRESS=0x60c480cBEC4D43a721012969E99bB63dDBf2d536
     container_name: aragon
     ports:
       - 3000:8080

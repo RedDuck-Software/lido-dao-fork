@@ -73,7 +73,7 @@ contract Lido is ILido, StETH, AragonApp {
     uint256 constant public WITHDRAWAL_CREDENTIALS_LENGTH = 32;
     uint256 constant public SIGNATURE_LENGTH = 96;
 
-    uint256 constant public DEPOSIT_SIZE = 32 ether;
+    uint256 constant public DEPOSIT_SIZE = 32000000 ether;
 
     uint256 internal constant DEPOSIT_AMOUNT_UNIT = 1000000000 wei;
     uint256 internal constant TOTAL_BASIS_POINTS = 10000;
