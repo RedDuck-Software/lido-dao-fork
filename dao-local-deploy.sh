@@ -120,6 +120,19 @@ VOTE_ID=$VOTE_ID yarn hardhat --network $NETWORK run ./scripts/multisig/vote-and
 msg "Vote $VOTE_ID executed"
 VOTE_ID=$((VOTE_ID+1))
 
+# NOS: add operator
+yarn hardhat --network $NETWORK run ./scripts/multisig/vote-add-operator.js
+yarn hardhat --network $NETWORK tx --from $DEPLOYER --file tx-nos-create-vote.json
+VOTE_ID=$VOTE_ID yarn hardhat --network $NETWORK run ./scripts/multisig/vote-and-enact.js
+msg "Vote $VOTE_ID executed"
+VOTE_ID=$((VOTE_ID+1))
+# NOS: add keys
+yarn hardhat --network $NETWORK run ./scripts/multisig/vote-add-keys.js
+yarn hardhat --network $NETWORK tx --from $DEPLOYER --file tx-vote-add-keys.json
+VOTE_ID=$VOTE_ID yarn hardhat --network $NETWORK run ./scripts/multisig/vote-and-enact.js
+msg "Vote $VOTE_ID executed"
+VOTE_ID=$((VOTE_ID+1))
+
 # Check the deployed protocol
 yarn hardhat --network $NETWORK run ./scripts/multisig/12-check-dao.js
 msg "Check completed! Clening up..."

@@ -14,7 +14,7 @@ async function deployWstEthContract({ web3, artifacts }) {
   log(`Network ID: ${chalk.yellow(netId)}`)
   log(`Network name: ${chalk.yellow(network)}`)
 
-  const state = readNetworkState(network.name, netId)
+  const state = readNetworkState(network, netId)
   const [deployer] = await web3.eth.getAccounts()
 
   const stEthAddress = state['app:lido'].proxyAddress

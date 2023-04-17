@@ -213,5 +213,9 @@
   "selfOwnedStETHBurnerDeployTx": "0x40c17178e099916df143a6381968998bdbd0ec693ece91bf023bafb66818b38a",
   "selfOwnedStETHBurnerAddress": "0xDeCFBc3c8BB97431c3C4a71215108DC8d7ea91Cf",
   "executionLayerRewardsVaultDeployTx": "0x419cb59a0ed6af7c41533a8a490f9334198c18298b2864f1362609f7ea2c4e57",
-  "executionLayerRewardsVaultAddress": "0xD6c4D2501A0C13192d2ec31f3F46C88B66D410bD"
+  "executionLayerRewardsVaultAddress": "0xD6c4D2501A0C13192d2ec31f3F46C88B66D410bD",
+  "wstethContractAddress": "0x05dC2003D9Ebc1C18d14ee527D86ED563DD7E681",
+  "wstethContractConstructorArgs": [
+    "0x6722D8b336e932bbB0894eC59421B0db2e454dFE"
+  ]
 }
