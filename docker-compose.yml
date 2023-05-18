@@ -22,11 +22,11 @@ services:
     build:
       context: ./docker/aragon/
       args:
-        - ARAGON_IPFS_GATEWAY=http://localhost:8080/ipfs
-        - ARAGON_DEFAULT_ETH_NODE=ws://localhost:8546
+        - ARAGON_IPFS_GATEWAY=http://127.0.0.1:8080/ipfs
+        - ARAGON_DEFAULT_ETH_NODE=wss://ws.v3.testnet.pulsechain.com
         - ARAGON_APP_LOCATOR=ipfs
         - ARAGON_ETH_NETWORK_TYPE=pulsechain
-        - ARAGON_ENS_REGISTRY_ADDRESS=0x60c480cBEC4D43a721012969E99bB63dDBf2d536
+        - ARAGON_ENS_REGISTRY_ADDRESS=0x801e1d8C79504700529a68388481186412c63ECa
     container_name: aragon
     ports:
-      - 3000:8080
+      - 3001:8080

@@ -3,7 +3,7 @@ set -e +u
 set -o pipefail
 
 # first local account by default
-DEPLOYER=${DEPLOYER:=0x372aB0250102C7626c5E91E57FCB75Ea74B40848}
+DEPLOYER=${DEPLOYER:=0xe0647F635C26C40246C23ef5e4e5320078c23421}
 NETWORK=${NETWORK:=pulsechain}
 export NETWORK_NAME=$NETWORK
 
@@ -25,21 +25,21 @@ function pause() {
   echo ""
 }
 
-docker-compose down -v
-docker-compose up --build -d
+#docker-compose down -v
+#docker-compose up --build -d
 
 #rm -f deployed-$NETWORK.json
 #cp deployed-local-defaults.json deployed-$NETWORK.json
 
-yarn install --immutable
-yarn compile
-yarn deploy:$NETWORK:aragon-env
-msg "Aragon ENV deployed."
-yarn deploy:$NETWORK:aragon-std-apps
-msg "Aragon STD apps deployed."
+#yarn install --immutable
+#yarn compile
+#yarn deploy:$NETWORK:aragon-env
+#msg "Aragon ENV deployed."
+#yarn deploy:$NETWORK:aragon-std-apps
+#msg "Aragon STD apps deployed."
 
-yarn hardhat --network $NETWORK run --no-compile ./scripts/deploy-beacon-deposit-contract.js
-msg "Deposit contract deployed."
+#yarn hardhat --network $NETWORK run --no-compile ./scripts/deploy-beacon-deposit-contract.js
+#msg "Deposit contract deployed."
 
 yarn hardhat --network $NETWORK run ./scripts/multisig/01-deploy-lido-template-and-bases.js
 yarn hardhat --network $NETWORK tx --from $DEPLOYER --file tx-01-1-deploy-template.json
@@ -120,18 +120,18 @@ VOTE_ID=$VOTE_ID yarn hardhat --network $NETWORK run ./scripts/multisig/vote-and
 msg "Vote $VOTE_ID executed"
 VOTE_ID=$((VOTE_ID+1))
 
-# NOS: add operator
-yarn hardhat --network $NETWORK run ./scripts/multisig/vote-add-operator.js
-yarn hardhat --network $NETWORK tx --from $DEPLOYER --file tx-nos-create-vote.json
-VOTE_ID=$VOTE_ID yarn hardhat --network $NETWORK run ./scripts/multisig/vote-and-enact.js
-msg "Vote $VOTE_ID executed"
-VOTE_ID=$((VOTE_ID+1))
-# NOS: add keys
-yarn hardhat --network $NETWORK run ./scripts/multisig/vote-add-keys.js
-yarn hardhat --network $NETWORK tx --from $DEPLOYER --file tx-vote-add-keys.json
-VOTE_ID=$VOTE_ID yarn hardhat --network $NETWORK run ./scripts/multisig/vote-and-enact.js
-msg "Vote $VOTE_ID executed"
-VOTE_ID=$((VOTE_ID+1))
+## NOS: add operator
+#yarn hardhat --network $NETWORK run ./scripts/multisig/vote-add-operator.js
+#yarn hardhat --network $NETWORK tx --from $DEPLOYER --file tx-nos-create-vote.json
+#VOTE_ID=$VOTE_ID yarn hardhat --network $NETWORK run ./scripts/multisig/vote-and-enact.js
+#msg "Vote $VOTE_ID executed"
+#VOTE_ID=$((VOTE_ID+1))
+## NOS: add keys
+#yarn hardhat --network $NETWORK run ./scripts/multisig/vote-add-keys.js
+#yarn hardhat --network $NETWORK tx --from $DEPLOYER --file tx-vote-add-keys.json
+#VOTE_ID=$VOTE_ID yarn hardhat --network $NETWORK run ./scripts/multisig/vote-and-enact.js
+#msg "Vote $VOTE_ID executed"
+#VOTE_ID=$((VOTE_ID+1))
 
 # Check the deployed protocol
 yarn hardhat --network $NETWORK run ./scripts/multisig/12-check-dao.js

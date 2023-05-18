@@ -5,6 +5,11 @@
       "appName": "dao.lido.eth",
       "network": "development"
     },
+    "pulsechain": {
+      "registry": "0x801e1d8C79504700529a68388481186412c63ECa",
+      "appName": "dao.lido.eth",
+      "network": "pulsechain"
+    },
     "rinkeby": {
       "registry": "0x98df287b6c145399aaa709692c8d308357bc085d",
       "appName": "dao.lido.eth",

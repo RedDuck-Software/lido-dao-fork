@@ -27,6 +27,10 @@
     }
   ],
   "environments": {
+    "pulsechain": {
+      "appName": "oracle.lidopm.eth",
+      "network": "pulsechain"
+    },
     "default": {
       "appName": "oracle.lidopm.eth",
       "network": "development"

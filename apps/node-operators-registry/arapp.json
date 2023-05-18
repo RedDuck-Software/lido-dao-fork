@@ -53,6 +53,10 @@
     }
   ],
   "environments": {
+    "pulsechain": {
+      "appName": "node-operators-registry.lidopm.eth",
+      "network": "pulsechain"
+    },
     "default": {
       "appName": "node-operators-registry.lidopm.eth",
       "network": "development"

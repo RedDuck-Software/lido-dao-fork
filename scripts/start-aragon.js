@@ -4,17 +4,15 @@ const namehash = require('eth-ens-namehash').hash
 
 const { execLive } = require('./helpers/exec')
 const { log, logHeader, yl, gr } = require('./helpers/log')
-const { gitCloneRepo } = require('./helpers/git')
 const { readJSON, fileExists } = require('./helpers/fs')
+const { gitCloneRepo } = require('./helpers/git')
 
-const runOrWrapScript = require('./helpers/run-or-wrap-script')
-
+const ARAGON_APPS_REPO = process.env.ARAGON_APPS_REPO || 'https://github.com/RedDuck-Software/pulsechain-aragon-client.git'
 const APPS = process.env.APPS || '*'
 const APPS_DIR_PATH = process.env.APPS_DIR_PATH || path.resolve(__dirname, '..', 'apps')
-const ARAGON_APPS_REPO = process.env.ARAGON_APPS_REPO || 'https://github.com/lidofinance/aragon-client'
 const ARAGON_APPS_REPO_REF = process.env.ARAGON_APPS_REPO_REF || 'master'
-const RUN_CMD = process.env.RUN_CMD || 'local'
-const NETWORK_NAME = process.env.NETWORK_NAME || 'localhost'
+const RUN_CMD = process.env.RUN_CMD || 'pulsechain'
+const NETWORK_NAME = process.env.NETWORK_NAME || 'pulsechain'
 
 const appsRepoPath = './aragon-client'
 
@@ -23,33 +21,28 @@ const CMD_MAINNET = 'mainnet'
 const CMD_RINKEBY = 'rinkeby'
 const CMD_STAGING = 'staging'
 const CMD_ROPSTEN = 'ropsten'
+const CMD_PULSECHAIN = 'pulsechain'
 const CMD_XDAI = 'xdai'
-const AVAILIABLE_RUN_CMDS = [CMD_LOCAL, CMD_MAINNET, CMD_RINKEBY, CMD_STAGING, CMD_ROPSTEN, CMD_XDAI]
+const AVAILIABLE_RUN_CMDS = [CMD_PULSECHAIN, CMD_LOCAL, CMD_MAINNET, CMD_RINKEBY, CMD_STAGING, CMD_ROPSTEN, CMD_XDAI]
 
-async function startAragonClient(
-  aragonAppsRepoRef = ARAGON_APPS_REPO_REF,
-  appsDirPath = APPS_DIR_PATH,
-  appNames = APPS,
-  runCmd = RUN_CMD
-) {
-
+async function startAragonClient(aragonAppsRepoRef = ARAGON_APPS_REPO_REF, appsDirPath = APPS_DIR_PATH, appNames = APPS, runCmd = RUN_CMD) {
   assertRequiredRunCmd(runCmd, AVAILIABLE_RUN_CMDS)
 
   var deployedFileName = `deployed-${NETWORK_NAME}.json`
   var deployedFileExists = await fileExists(deployedFileName)
   if (!deployedFileExists) {
     log(`File ${deployedFileName} doesn't exists`)
-    return 
+    return
   }
 
   const deployedFile = await readJSON(deployedFileName)
   const ensAddress = process.env.ENS_ADDRESS || deployedFile.ensAddress || '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e'
-  
 
   logHeader(`Checking out aragon-client repo...`)
   await gitCloneRepo(appsRepoPath, ARAGON_APPS_REPO, aragonAppsRepoRef)
 
   await execLive('yarn', {
+    args: ['add', 'node-gyp'],
     cwd: appsRepoPath
   })
 
@@ -73,7 +66,7 @@ async function startAragonClient(
       port = res[1]
     }
 
-    const network = 'mainnet'
+    const network = 'pulsechain'
     const appId = arapp.environments[network].appName
     const appHash = namehash(appId)
     const location = `${appHash}:http://localhost:${port}/`
@@ -88,15 +81,16 @@ async function startAragonClient(
     ...process.env,
     ARAGON_APP_LOCATOR: appLocator,
     ARAGON_ENS_REGISTRY_ADDRESS: ensAddress,
-    ARAGON_DEFAULT_ETH_NODE: 'ws://localhost:8545',
-    ARAGON_IPFS_GATEWAY: 'http://localhost:8080'
+    // ARAGON_DEFAULT_ETH_NODE: 'ws://localhost:8545',
+    ARAGON_DEFAULT_ETH_NODE: 'wss://ws.v3.testnet.pulsechain.com',
+    ARAGON_IPFS_GATEWAY: ' http://127.0.0.1:8080'
   }
 
   if (runCmd === CMD_MAINNET) {
     aragonEnv.ARAGON_DEFAULT_ETH_NODE = 'ws://localhost:8545'
     aragonEnv.ARAGON_IPFS_GATEWAY = 'https://mainnet.lido.fi/ipfs'
   }
-  
+
   console.log(`ARAGON_APP_LOCATOR=${appLocator}`)
   console.log(`ARAGON_ENS_REGISTRY_ADDRESS=${ensAddress}`)
   console.log(`ARAGON_DEFAULT_ETH_NODE=${aragonEnv.ARAGON_DEFAULT_ETH_NODE}`)
@@ -110,7 +104,7 @@ async function startAragonClient(
 }
 
 function assertRequiredRunCmd(runCmd, availableCmd) {
-  let state = availableCmd.filter((key) => runCmd == key)
+  const state = availableCmd.filter((key) => runCmd === key)
   if (!state.length) {
     throw new Error(`Invalid RUN_CMD env, ` + `available options: ${availableCmd.join(', ')}`)
   }

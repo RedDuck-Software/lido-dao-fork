@@ -25,8 +25,8 @@
       "nodeOperatorsPercent": 75
     },
     "token": {
-      "name": "Staked tPLS",
-      "symbol": "stPLS"
+      "name": "Poolsea DAO token",
+      "symbol": "PDO"
     }
   },
   "vestingParams": {

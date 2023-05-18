@@ -57,6 +57,10 @@
     }
   ],
   "environments": {
+    "pulsechain": {
+      "appName": "lido.lidopm.eth",
+      "network": "pulsechain"
+    },
     "default": {
       "appName": "lido.lidopm.eth",
       "network": "development"

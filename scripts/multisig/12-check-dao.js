@@ -29,8 +29,8 @@ const TOKEN_DECIMALS = 18
 const TOKEN_MAX_PER_ACCOUNT = '115792089237316195423570985008687907853269984665640564039457584007913129639935'
 const FINANCE_DEFAULT_PERIOD = 60 * 60 * 24 * 30 // 30 days
 
-const STETH_TOKEN_NAME = 'Liquid staked Ether 2.0'
-const STETH_TOKEN_SYMBOL = 'stETH'
+const STETH_TOKEN_NAME = 'Staked PLS'
+const STETH_TOKEN_SYMBOL = 'stPLS'
 const STETH_TOKEN_DECIMALS = 18
 
 const ZERO_WITHDRAWAL_CREDENTIALS = '0x0000000000000000000000000000000000000000000000000000000000000000'
@@ -601,7 +601,7 @@ async function assertDaoPermissions({ kernel, lido, oracle, nopsRegistry, agent,
     ]
   })
 
-  { // Check BURN_ROLE on selfOwnedStETHBurner 
+  { // Check BURN_ROLE on selfOwnedStETHBurner
     const burnRoleName = 'BURN_ROLE'
     const burnRoleGrantee = selfOwnedStETHBurner.address
     const burnRoleHash = await lido[burnRoleName]()
