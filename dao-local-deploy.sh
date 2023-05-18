@@ -25,21 +25,21 @@ function pause() {
   echo ""
 }
 
-#docker-compose down -v
-#docker-compose up --build -d
+docker-compose down -v
+docker-compose up --build -d
 
-#rm -f deployed-$NETWORK.json
-#cp deployed-local-defaults.json deployed-$NETWORK.json
+rm -f deployed-$NETWORK.json
+cp deployed-local-defaults.json deployed-$NETWORK.json
 
-#yarn install --immutable
-#yarn compile
-#yarn deploy:$NETWORK:aragon-env
-#msg "Aragon ENV deployed."
-#yarn deploy:$NETWORK:aragon-std-apps
-#msg "Aragon STD apps deployed."
+yarn install --immutable
+yarn compile
+yarn deploy:$NETWORK:aragon-env
+msg "Aragon ENV deployed."
+yarn deploy:$NETWORK:aragon-std-apps
+msg "Aragon STD apps deployed."
 
-#yarn hardhat --network $NETWORK run --no-compile ./scripts/deploy-beacon-deposit-contract.js
-#msg "Deposit contract deployed."
+yarn hardhat --network $NETWORK run --no-compile ./scripts/deploy-beacon-deposit-contract.js
+msg "Deposit contract deployed."
 
 yarn hardhat --network $NETWORK run ./scripts/multisig/01-deploy-lido-template-and-bases.js
 yarn hardhat --network $NETWORK tx --from $DEPLOYER --file tx-01-1-deploy-template.json
