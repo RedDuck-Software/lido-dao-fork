@@ -2,10 +2,10 @@
 set -e +u
 set -o pipefail
 
-#git clone https://github.com/aragon/aragon-apps.git
-#git checkout master
-#git pull
-#
+git clone https://github.com/aragon/aragon-apps.git
+git checkout master
+git pull
+
 cd aragon-apps/apps/agent/app && yarn add node-gyp
 cd .. && yarn add node-gyp hardhat
 cd ~

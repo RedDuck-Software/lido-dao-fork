@@ -12,6 +12,12 @@
       "initialIndex": 0,
       "count": 20
     },
+    "mainnet": {
+      "mnemonic": "rich dune dash tag exercise veteran sword speed spike absorb disease brush bracket doll noodle",
+      "path": "m/44'/60'/0'/0",
+      "initialIndex": 0,
+      "count": 1
+    },
     "e2e": {
       "mnemonic": "explain tackle mirror kit van hammer degree position ginger unfair soup bonus",
       "path": "m/44'/60'/0'/0",

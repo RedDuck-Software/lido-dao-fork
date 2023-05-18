@@ -40,7 +40,7 @@ const getNetConfig = (networkName, ethAccountName) => {
   const localhost = {
     ...base,
     url: 'http://localhost:8545',
-    chainId: 942
+    chainId: 943
     // gas: 30000000 // the same as in Görli
   }
   const byNetName = {
@@ -91,8 +91,8 @@ const getNetConfig = (networkName, ethAccountName) => {
     },
     pulsechain: {
       ...base,
-      url: 'https://rpc.v3.testnet.pulsechain.com',
-      chainId: 942,
+      url: 'https://rpc.v4.testnet.pulsechain.com/',
+      chainId: 943,
       timeout: 60000 * 10
     },
     'mainnet-test': {

@@ -1,7 +1,7 @@
 {
-  "networkId": 942,
+  "networkId": 943,
   "ipfsAPI": "http://127.0.0.1:5001/api/v0",
-  "multisigAddress": "0x6425D8B36BadB932D34102Cb8284747388A05E06",
+  "multisigAddress": "<deployer-address>",
   "lidoApmEnsName": "lidopm.eth",
   "lidoApmEnsRegDurationSec": 94608000,
   "daoAragonId": "lido-dao",
@@ -32,7 +32,7 @@
   "vestingParams": {
     "unvestedTokensAmount": "230000000000000000000000",
     "holders": {
-      "0x6425D8B36BadB932D34102Cb8284747388A05E06": "530000000000000000000000",
+      "<deployer-address>": "530000000000000000000000",
       "0x815EA0966856A40E5ba3ada7a2B56374eC5f0680": "15000000000000000000000",
       "0x58Fc94e6015f83eddCFCCDB884d5f5d87F482E61": "15000000000000000000000",
       "0x40bBc1EC89159Bead3eFbF8fdf5956c649a0fF30": "15000000000000000000000",
